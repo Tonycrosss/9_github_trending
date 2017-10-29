@@ -1,12 +1,11 @@
 import requests
 import datetime
 
-for_a_week = (datetime.datetime.today() - datetime.timedelta(days=7)).strftime(
-                                                                    '%Y-%m-%d')
-
 
 def get_trending_repositories():
-    search_params = {'q': 'created:>={}'.format(for_a_week),
+    weekly = (datetime.datetime.today()
+              - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
+    search_params = {'q': 'created:>={}'.format(weekly),
                      'sort': 'stars', 'order': 'desc'}
     response = requests.get('https://api.github.com/search/repositories',
                             params=search_params)
