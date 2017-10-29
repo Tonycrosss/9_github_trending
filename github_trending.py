@@ -14,9 +14,9 @@ def get_trending_repositories():
     return all_repos
 
 
-def get_top_20(repos):
-    top_20_repos = repos['items'][:19]
-    return top_20_repos
+def get_top(repos, quantity):
+    top_repos = repos['items'][:quantity - 1]
+    return top_repos
 
 
 def print_data_from_repos(repos):
@@ -29,6 +29,6 @@ def print_data_from_repos(repos):
 
 
 if __name__ == '__main__':
-    top_repos = get_trending_repositories()
-    top_20 = get_top_20(top_repos)
-    print_data_from_repos(top_20)
+    trending_repos = get_trending_repositories()
+    top_repos = get_top(trending_repos, 20)
+    print_data_from_repos(top_repos)
