@@ -4,6 +4,7 @@ import datetime
 for_a_week = (datetime.datetime.today() - datetime.timedelta(days=7)).strftime(
                                                                     '%Y-%m-%d')
 
+
 def get_trending_repositories():
     search_params = {'q': 'created:>={}'.format(for_a_week),
                      'sort': 'stars', 'order': 'desc'}
