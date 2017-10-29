@@ -15,7 +15,7 @@ def get_trending_repositories():
 
 
 def get_top_20(repos):
-    top_20_repos = repos['items'][:21]
+    top_20_repos = repos['items'][:19]
     return top_20_repos
 
 
