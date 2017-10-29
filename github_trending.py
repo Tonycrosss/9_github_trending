@@ -4,17 +4,17 @@ import datetime
 for_a_week = (datetime.datetime.today() - datetime.timedelta(days=7)).strftime(
                                                                     '%Y-%m-%d')
 
-
 def get_trending_repositories():
-    response = requests.get('https://api.github.com/search/repositories?'
-                            'q=created:>={}&sort=stars'
-                            '&order=desc'.format(for_a_week))
+    search_params = {'q': 'created:>={}'.format(for_a_week),
+                     'sort': 'stars', 'order': 'desc'}
+    response = requests.get('https://api.github.com/search/repositories',
+                            params=search_params)
     all_repos = response.json()
     return all_repos
 
 
 def get_top_20(repos):
-    top_20_repos = repos['items'][0:21]
+    top_20_repos = repos['items'][:21]
     return top_20_repos
 
 
