@@ -29,5 +29,6 @@ def print_data_from_repos(repos):
 
 if __name__ == '__main__':
     trending_repos = get_trending_repositories()
-    top_repos = get_top(trending_repos, 20)
+    repos_quantity = 20
+    top_repos = get_top(trending_repos, repos_quantity)
     print_data_from_repos(top_repos)
