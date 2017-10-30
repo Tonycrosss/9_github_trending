@@ -2,7 +2,7 @@ import requests
 import datetime
 
 
-def get_trending_repositories():
+def get_trending_repositories(quantity):
     weekly = (datetime.datetime.today()
               - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
     search_params = {'q': 'created:>={}'.format(weekly),
@@ -10,12 +10,8 @@ def get_trending_repositories():
     response = requests.get('https://api.github.com/search/repositories',
                             params=search_params)
     all_repos = response.json()
-    return all_repos
-
-
-def get_top(repos, quantity):
-    top_repos = repos['items'][:quantity - 1]
-    return top_repos
+    trending_repos = all_repos['items'][:quantity - 1]
+    return trending_repos
 
 
 def print_data_from_repos(repos):
@@ -39,7 +35,6 @@ def get_repo_issue_quantity(repo_owner, repo_name):
 
 
 if __name__ == '__main__':
-    trending_repos = get_trending_repositories()
     repos_quantity = 20
-    top_repos = get_top(trending_repos, repos_quantity)
-    print_data_from_repos(top_repos)
+    trending_repos = get_trending_repositories(repos_quantity)
+    print_data_from_repos(trending_repos)
