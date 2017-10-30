@@ -1,7 +1,6 @@
 import requests
 import datetime
 
-
 def get_trending_repositories():
     weekly = (datetime.datetime.today()
               - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
@@ -20,10 +19,10 @@ def get_top(repos, quantity):
 
 def print_data_from_repos(repos):
     for repo in repos:
-        print('Название репозитория: ' + '{}'.format(repo['name']))
-        print('Количество открытых issues: ' + '{}'.format(
+        print('Название репозитория: {}'.format(repo['name']))
+        print('Количество открытых issues: {}'.format(
                                                     repo['open_issues_count']))
-        print('Ссылка на репозиторий: ' + '{}'.format(repo['html_url']))
+        print('Ссылка на репозиторий: {}'.format(repo['html_url']))
         print('-' * 80)
 
 
