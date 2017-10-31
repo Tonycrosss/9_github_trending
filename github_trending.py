@@ -3,14 +3,14 @@ import datetime
 
 
 def get_trending_repositories(quantity):
-    weekly = (datetime.datetime.today()
+    week_ago = (datetime.datetime.today()
               - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
-    search_params = {'q': 'created:>={}'.format(weekly),
+    search_params = {'q': 'created:>={}'.format(week_ago),
                      'sort': 'stars', 'order': 'desc'}
     response = requests.get('https://api.github.com/search/repositories',
                             params=search_params)
     all_repos = response.json()
-    trending_repos = all_repos['items'][:quantity - 1]
+    trending_repos = all_repos['items'][:quantity]
     return trending_repos
 
 
